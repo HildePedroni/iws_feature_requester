@@ -13,7 +13,7 @@ class Config:
     DB_NAME = config('DB_NAME')
 
     if not DEBUG:
-        SQLALCHEMY_DATABASE_URI = f"mysql+pymysql://{DB_USERNAME}:{DB_PASSWORD}@{DB_HOSTNAME}:{DB_PORT}/{DB_NAME}"
+        SQLALCHEMY_DATABASE_URI = f"mysql+pymysql://{DB_USERNAME}:{DB_PASSWORD}@{DB_HOSTNAME}/{DB_NAME}"
     else:
         DB_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)),
                                'database.db')
