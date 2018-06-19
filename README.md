@@ -12,7 +12,7 @@ Whit this app, the client create a request that will be exposed for developer wi
 
 <strong>The project lives at:</strong>
 
-http://feature-requester-env.9spgqkekkm.us-east-1.elasticbeanstalk.com/
+http://iws-feature-requester-dev.us-east-1.elasticbeanstalk.com/
 
 
 ## Developement
