@@ -1,0 +1,20 @@
+language: python
+python:
+  - "3.6"
+
+# command to install dependencies
+install:
+  - pip install -r requirements.txt
+
+# command to run tests
+script: make test
+
+deploy:
+  provider: elasticbeanstalk
+  access_key_id: "mwjkd1PKxhHvJrbbRh5P3sGp0U9y3EpuKorwreJT32KZ9OFpkE/VXxXqTkfaNTezNgRcPOs/kXpEjAiN56emCj8IRZQg8Ink7lGjDfgtTTTOHrS5I4VdJepDX89cX3JBH/y98n9xKLvCLtTedJinA7cC8XgX8H2LRjqrpSv9lu32HaHkfg7oMPdRsJNDJlGTwVNZ7a4jN3BQcTNKEgmtDM86yU0KmLRyxWpWWi8HL46s0ZPz+RqX4biK9YLKJ2f9keZjnOLT80NuUCsN05Y/DAPpZEBbMs1G7alqyCtDVYiLrdpGUW34ZVbBgo23f1mTFeuU4DwZqoadIawfAJD09olyDUfuCYkfhfFfeBUd9LqnXX8tnESeGv0iFVMs2oI4AlP9umyX+GIpeTNtQsVtZKUxmejtsszSjL/BjvgSl8mAEJLHg5gHilQhxPdvbGHTuz0Xn5/MfFP/vqgw+1YLi7ECTORDMTcVDVaSLGQv4cdXtYWqQBhvDf4RRWaGmz6tvuBGTWC01xTViWCbf1ro/zEw9YDe/MW2dYtjpmeEqOW0J53MxrKSKP9R5/l2wJ8AF2tPcu4khYL/8AJDME1trE0VcEfSFcFXKz42FN5CAwMQ3XYYanqkqwLPuuGPoFxVKOG1qYUYbBp/65sFrxWDI4MSfrAoA/U6m4ZPDk/4mqY="
+  secret_access_key:
+    secure: "TNdhFmdcrqJyQ93k8IUrSfm6TKF7cNnZ+W/Hglz4f6Bb5XuZDMy3QqKEJJ274BfEaY/y3tetfGU4HqJ3cfWHJczxZwl6bruCOvlkV2Rjf+UeKbQwZDCkkH1ZFU1yHyjAIsncUQJVXm0BIi9/CVXlIOKGYG6tWZuYTWjbh1Q/dqKirRJdEZ8acoxE4mbqJ+/1SUsrHmmr/OsnORscnx+FsomtjGZsQI/lDuQqu3dSwQKry7Toe3G3L15tfBU1kF3wZ6Rj2MVktVvSo2s+ntD03tgWX5JHyKgLADNz4ihf/On/nxHt8oMpJ+SV7owr7D60/dCYpaEjCczA+olamtT08qZ2DWkRGLisWAPLA/VLHT+riUzdWWRY8VLIwRCaKFBiPpAWMmRsFw1RtTZAbgP/20SgpG6B8uRW0zy+wdikXEB2E/0eSGgwyaKkieCsh5E/i5wDVNZcAOnK5lfv4JNIT/JDWyYgkRw0db6IiW7PXfJZFA43HCLkZezs828r9hyCMD/iCQPGof+wwQ1UV7IPXZZFtZ6TXKFkwZ4yrjE/eNuq4ThE5reMk6qCCp0lbwc423BHq7d7fQ1csDSn0tlwMw6v2eBNq1mqaQjBojt9GMPT282aopikMOQpJc4Cwu4XiibBphi2YP1mfWjkrvb8OWqjQUwVkDfATxlKgIvoQi0="
+  region: "us-east-1"
+  app: "iws_feature_requester"
+  env: "Feature-requester-env"
+  bucket_name: "elasticbeanstalk-us-east-1-188018998564"
