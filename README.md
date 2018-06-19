@@ -1,6 +1,6 @@
-#Feature requester
+# Feature requester
 
-##About
+## About
 
 A simple Flask application made to clients ho wants to have a better way to 
 request new features for their softwares.
@@ -8,7 +8,7 @@ request new features for their softwares.
 Whit this app, the client create a request that will be exposed for developer with a few steps.
 
 
-##Developement
+## Developement
 
 The app is being develped with Flask framework for backend and knockoutJS for front
 
