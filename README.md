@@ -33,6 +33,15 @@ The app is being develped with Flask framework for backend and knockoutJS for fr
 5 - run tests
 
 
+
+4 - In python interactive shell
+````console
+>>> from feature_requester import create_app
+>>> from feature_requester.models import db
+>>> db.create_all(app=create_app())
+````
+
+
 <strong>Under contruction</strong>
 
 The next steps will be added later 
