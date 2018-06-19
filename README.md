@@ -1,5 +1,7 @@
 # Feature requester
 
+[![Build Status](https://travis-ci.org/HildePedroni/iws_feature_requester.svg?branch=master)](https://travis-ci.org/HildePedroni/iws_feature_requester)
+
 ## About
 
 A simple Flask application made to clients ho wants to have a better way to 
