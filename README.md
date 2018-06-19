@@ -10,6 +10,11 @@ request new features for their softwares.
 Whit this app, the client create a request that will be exposed for developer with a few steps.
 
 
+<strong>The project lives at:</strong>
+
+http://feature-requester-env.9spgqkekkm.us-east-1.elasticbeanstalk.com/
+
+
 ## Developement
 
 The app is being develped with Flask framework for backend and knockoutJS for front
@@ -35,3 +40,20 @@ The next steps will be added later
 
 ### Deploy the application
 
+The application is deployed with AWS elastic beanstalk cli.
+
+To install fallow the instructions at:
+
+https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-install.html
+
+To configure fallow the instructions at:
+
+https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-configuration.html
+
+You have to have the aws credentials to config the environment
+
+After configuration done, use 
+```console
+eb deploy
+```` 
+to deploy the application
