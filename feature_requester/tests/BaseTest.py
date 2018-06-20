@@ -35,8 +35,8 @@ class BaseTest(TestCase):
         client = Client(name=client_name)
         return client
 
-    def create_feature(self, client_name='Client A', priority=1):
-        client = self.create_client(client_name)
+    def create_feature(self, client=None, client_name='Client A', priority=1):
+        client = client if client else self.create_client(client_name)
 
         new_feature = Feature(
             title='New request feature',
@@ -48,15 +48,20 @@ class BaseTest(TestCase):
         )
         return new_feature
 
-    def create_test_features(self, how_many=1, client_name=None):
+    def create_test_features(self, how_many=1, client_name=None, client=None):
         """
         Will return clients with names in sequence
         Client 1, Client 2, ... ,Client n
         """
+
         for num in range(how_many):
-            a_feature = self.create_feature(
-                client_name=client_name if client_name else 'Client ' + str(
-                    num + 1),
-                priority=num
-            )
+            if client:
+                a_feature = self.create_feature(client=client, priority=num + 1)
+            else:
+                a_feature = self.create_feature(
+                    client_name=client_name
+                    if client_name
+                    else 'Client ' + str(num + 1),
+                    priority=num + 1
+                )
             a_feature.save()

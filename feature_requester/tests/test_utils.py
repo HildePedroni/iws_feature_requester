@@ -22,15 +22,8 @@ class TestUtils(BaseTest):
 
     def test_reorder_features_for_client(self):
         """Order of features ids should be 1,2,5, and 4"""
-        self.create_features()
-        a_feature = Feature(
-            title='New request feature',
-            description='Wants a form do make feature requests',
-            target_date='2018-07-10',
-            priority=3,
-            product_area='Billing',
-            client=self.client
-        )
+        self.create_test_features(how_many=4, client=self.client)
+        a_feature = self.create_feature(client=self.client, priority=3)
 
         utils.reorder_features_for_client(client=self.client, feature=a_feature)
         a_feature.save()
@@ -46,15 +39,3 @@ class TestUtils(BaseTest):
                 dic2 = {'id': feature.id,
                         'priority': feature.priority}
                 self.assertEqual(dic1, dic2)
-
-    def create_features(self):
-        for num in range(4):
-            new_feature = Feature(
-                title='New request feature',
-                description='Wants a form do make feature requests',
-                target_date='2018-07-10',
-                priority=num + 1,
-                product_area='Billing',
-                client=self.client
-            )
-            new_feature.save()
