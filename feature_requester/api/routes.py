@@ -1,5 +1,6 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 
+from feature_requester.api import utils
 from feature_requester.models import Feature, FeatureSchema
 
 api = Blueprint('api', __name__)
@@ -24,7 +25,29 @@ def get_one_feature(feature_id):
 
 @api.route('/feature', methods=['POST'])
 def create_new_feature():
-    return jsonify({'message': 'new feature created'})
+    feature_schema = FeatureSchema()
+    data = request.get_json()
+    errors = feature_schema.validate(data)
+    if errors:
+        return jsonify({'errors': errors}), 400
+
+    client_name = data['client']['name']
+    client = utils.get_client_or_create(
+        client_name=client_name
+    )
+
+    feature = Feature(
+        title=data['title'],
+        description=data['description'],
+        target_date=data['target_date'],
+        product_area=data['product_area'],
+        priority=data['priority'],
+        client=client
+    )
+    utils.reorder_features_for_client(client=client, feature=feature)
+    feature.save()
+
+    return jsonify({'feature': feature_schema.dump(feature).data}), 201
 
 
 # PATCH Feature

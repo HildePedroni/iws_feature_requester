@@ -48,14 +48,15 @@ class BaseTest(TestCase):
         )
         return new_feature
 
-    def create_test_features(self, how_many=1):
+    def create_test_features(self, how_many=1, client_name=None):
         """
         Will return clients with names in sequence
         Client 1, Client 2, ... ,Client n
         """
         for num in range(how_many):
             a_feature = self.create_feature(
-                client_name='Client ' + str(num + 1),
+                client_name=client_name if client_name else 'Client ' + str(
+                    num + 1),
                 priority=num
             )
             a_feature.save()

@@ -16,11 +16,6 @@ class Test(TestCase):
         resp = self.request_client.get('/')
         self.assertEqual(200, resp.status_code)
 
-    def test_create_new_feature_url(self):
-        """post on /api/feature should return status 200"""
-        resp = self.request_client.post('/api/feature')
-        self.assertEqual(200, resp.status_code)
-
     def test_patch_feature_url(self):
         """patch on /api/feature/id should return status 200"""
         resp = self.request_client.patch('/api/feature/1')
