@@ -3,7 +3,7 @@
 .idea
 __pycache__
 
-database.db
+*.db
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*

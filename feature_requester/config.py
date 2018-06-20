@@ -9,7 +9,6 @@ class Config:
     DB_HOSTNAME = config('DB_HOSTNAME')
     DB_USERNAME = config('DB_USERNAME')
     DB_PASSWORD = config('DB_PASSWORD')
-    DB_PORT = config('DB_PORT')
     DB_NAME = config('DB_NAME')
 
     if not DEBUG:
