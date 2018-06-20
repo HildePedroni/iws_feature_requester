@@ -1,16 +1,25 @@
 from flask import Blueprint, jsonify
 
+from feature_requester.models import Feature, FeatureSchema
+
 api = Blueprint('api', __name__)
 
 
 @api.route('/feature', methods=['GET'])
 def get_all_features():
-    return jsonify({'features': 'List of all features'})
+    features = Feature.query.order_by(Feature.priority)
+    feature_schema = FeatureSchema(many=True)
+    output = feature_schema.dump(features).data
+    return jsonify({'features': output}), 200
 
 
 @api.route('/feature/<feature_id>', methods=['GET'])
 def get_one_feature(feature_id):
-    return jsonify({'features': 'One feature'})
+    feature_schema = FeatureSchema()
+    feature = Feature.query.get_or_404(feature_id)
+    output = feature_schema.dump(feature)
+
+    return jsonify({'feature': output.data}), 200
 
 
 @api.route('/feature', methods=['POST'])
