@@ -37,7 +37,7 @@
     </div>
     <div class="card-colums">
 
-        <div data-bind="foreach:featuresList">
+        <div data-bind="foreach:features">
 
             <div class="card">
                 <div class="card-body">
@@ -79,7 +79,8 @@
                                 <button type="button"
                                         class="btn btn-primary alert alert-danger"
                                         data-dismiss="modal"
-                                        data-bind="click:$root.updateFeature"
+                                        data-bind="click:$parent.updateFeature"
+
                                 >Delete
                                 </button>
                             </div>
@@ -87,7 +88,8 @@
                                 <button type="button"
                                         class="btn btn-primary"
                                         data-dismiss="modal"
-                                        data-bind="click:$root.updateFeature">
+                                        data-bind="click:$parent.deleteFeature"
+                                >
                                     Edit
                                 </button>
                             </div>
@@ -180,8 +182,9 @@
                     <button type="button" class="btn btn-secondary"
                             data-dismiss="modal">Cancel
                     </button>
-                    <input type="submit" class="btn btn-primary"
-                           value="Save Request">
+                    <button type="button" class="btn btn-primary"
+                            data-bind="click:$root.save">Save Request
+                    </button>
                 </div>
             </div>
         </form>
@@ -195,7 +198,7 @@
         type="text/javascript"></script>
 <script src="{{ url_for('static', filename='js/utils.js') }}"
         type="text/javascript"></script>
-<script src="{{ url_for('static', filename='js/requesterViewModel.js') }}"
+<script src="{{ url_for('static', filename='js/FeatureViewModel.js') }}"
         type="text/javascript"></script>
 <script src="{{ url_for('static', filename='js/application.js') }}"
         type="text/javascript"></script>
