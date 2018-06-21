@@ -30,12 +30,12 @@ class TestUtils(BaseTest):
         client_features = Feature.query.filter(
             Feature.client == self.client).order_by(Feature.priority)
 
-        expected = ((1, 1), (2, 2), (5, 3), (3, 4), (4, 5),)
+        expected_id_priority = ((1, 1), (2, 2), (5, 3), (3, 4), (4, 5),)
 
         for i, feature in enumerate(client_features):
             with self.subTest():
-                dic1 = {'id': expected[i][0],
-                        'priority': expected[i][1]}
+                dic1 = {'id': expected_id_priority[i][0],
+                        'priority': expected_id_priority[i][1]}
                 dic2 = {'id': feature.id,
                         'priority': feature.priority}
                 self.assertEqual(dic1, dic2)

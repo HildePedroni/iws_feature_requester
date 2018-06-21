@@ -1,12 +1,204 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>IWS Feature Requests</title>
-</head>
-<body>
-<h1>Under construction!!</h1>
-<h3>Shortly you will be able to make your requests, be patient please. ;)</h3>
+<html>
 
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feature_requests</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+
+<body>
+<nav class="navbar navbar-light navbar-expand-md">
+    <div class="container-fluid"><a class="navbar-brand" href="#"><strong>Feature</strong>
+        Requester</a>
+        <button class="navbar-toggler" data-toggle="collapse"
+                data-target="#navcol-1"><span
+                class="sr-only">Toggle navigation</span><span
+                class="navbar-toggler-icon"></span></button>
+        <div
+                class="collapse navbar-collapse" id="navcol-1">
+            <ul class="nav navbar-nav ml-auto"></ul>
+            <ul class="nav navbar-nav"></ul>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div>
+        <button class="btn btn-primary my_styled_button" type="button"
+                data-toggle="modal" data-target="#new_feature_modal">New Feature
+        </button>
+    </div>
+    <div class="card-colums">
+
+        <div data-bind="foreach:featuresList">
+
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="text-center card-title" data-bind="text: title">
+                        Feature Title</h3>
+                    <h6 class="text-muted card-subtitle mb-2">
+                        Client: <span
+                            data-bind="text: client.name">Client A</span>
+                    </h6>
+                    <h6 class="text-muted card-subtitle mb-2">
+                        Product Area: <span data-bind="text: product_area">Billing</span>
+                    </h6>
+                    <h6 class="text-muted card-subtitle mb-2">Due Date : <span
+                            data-bind="text: target_date">12/27/2018</span>
+                    </h6>
+                    <label for="id_desc">Description: </label>
+                    <p id="id_desc" class="card-text"
+                       data-bind="text: description">Nullam id
+                        dolor id nibh ultricies vehicula ut id elit. Cras justo
+                        odio, dapibus ac facilisis in, egestas eget quam. Donec
+                        id elit non mi porta gravida at eget metus.</p>
+                    <div>
+                        <div class="row">
+                            <div class="col offset-lg-0 align-self-center">
+                                <h4 class="text-right text-muted mb-2">Priority
+                                    :</h4>
+                            </div>
+                            <div class="col float-left">
+                                <span class="badge badge-pill badge-warning"
+                                      data-bind="text: priority"
+                                      style="font-size:20px;margin:10px;">
+                                    42
+                                </span></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="row">
+                            <div class="col offset-lg-0 align-self-center">
+                                <button type="button"
+                                        class="btn btn-primary alert alert-danger"
+                                        data-dismiss="modal"
+                                        data-bind="click:$root.updateFeature"
+                                >Delete
+                                </button>
+                            </div>
+                            <div class="col float-left">
+                                <button type="button"
+                                        class="btn btn-primary"
+                                        data-dismiss="modal"
+                                        data-bind="click:$root.updateFeature">
+                                    Edit
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<!-- New Feature Modal -->
+<div class="modal fade" id="new_feature_modal" tabindex="-1" role="dialog"
+     aria-labelledby="modal_label" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <form id="form_save_feature">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modal_label">Modal
+                        title</h5>
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group ">
+                        <input type="text" class="form-control"
+                               placeholder="Give a intuitive title"
+                               data-bind="value: title">
+                    </div>
+
+                    <div class="form-group">
+                                <textarea class="form-control" rows="8"
+                                          placeholder="Now, write with details your feature"
+                                          data-bind="value: description"></textarea>
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <select class="form-control"
+                                data-bind="value: client">
+                            <option disabled selected hidden>
+                                Client
+                            </option>
+                            <option>Client A</option>
+                            <option>Client B</option>
+                            <option>Client C</option>
+                        </select>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <select class="form-control"
+                                data-bind="value: product_area">
+                            <option disabled selected hidden>Product
+                                area
+                            </option>
+                            <option>Polices</option>
+                            <option>Billing</option>
+                            <option>Claims</option>
+                            <option>Reports</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="number" min="1" class="form-control"
+                               placeholder="Priority"
+                               data-bind="value: priority"
+                        />
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="deliver-date">Deliver date</label>
+                        <div id="deliver-date" class="col-10">
+                            <input class="form-control" type="date"
+                                   value="2018-05-19"
+                                   data-bind="value: target_date"
+                                   required>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary"
+                            data-dismiss="modal">Cancel
+                    </button>
+                    <input type="submit" class="btn btn-primary"
+                           value="Save Request">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="{{ url_for('static', filename='js/_knockout.js') }}"
+        type="text/javascript"></script>
+<script src="{{ url_for('static', filename='js/_knockout_mapping.js') }}"
+        type="text/javascript"></script>
+<script src="{{ url_for('static', filename='js/utils.js') }}"
+        type="text/javascript"></script>
+<script src="{{ url_for('static', filename='js/requesterViewModel.js') }}"
+        type="text/javascript"></script>
+<script src="{{ url_for('static', filename='js/application.js') }}"
+        type="text/javascript"></script>
 </body>
+
 </html>

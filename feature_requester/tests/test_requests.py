@@ -70,6 +70,14 @@ class TestFeature(BaseTest):
 
     def test_new_feature(self):
         """Should return the new created feature as a json"""
+        {"title": "qweqweqweqwe",
+         "description": "qweqweqweqweeqw",
+         "client": "Client B",
+         "target_date": "2018-06-30",
+         "priority": "4",
+         "product_area": "Billing"}
+
+
         data = {
             'client': {
                 'name': 'Client A'
