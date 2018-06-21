@@ -21,6 +21,9 @@ class Feature(db.Model):
         db.session.add(self)
         db.session.commit()
 
+    def update(self):
+        db.session.commit()
+
 
 class Client(db.Model):
     id = db.Column(db.Integer, primary_key=True)

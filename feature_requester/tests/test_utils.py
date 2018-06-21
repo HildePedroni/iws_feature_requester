@@ -39,3 +39,25 @@ class TestUtils(BaseTest):
                 dic2 = {'id': feature.id,
                         'priority': feature.priority}
                 self.assertEqual(dic1, dic2)
+
+    def test_reorder_update_for_client(self):
+        """Order of features ids should be 1,3,2, and 4"""
+        self.create_test_features(how_many=4, client=self.client)
+        a_feature = Feature.query.get_or_404(3)
+
+        utils.swap_features_priority(client=self.client,
+                                     feature=a_feature,
+                                     new_priority=2)
+
+        client_features = Feature.query.filter(
+            Feature.client == self.client).order_by(Feature.priority)
+
+        expected_id_priority = ((1, 1), (3, 2), (2, 3), (4, 4),)
+
+        for i, feature in enumerate(client_features):
+            with self.subTest():
+                dic1 = {'id': expected_id_priority[i][0],
+                        'priority': expected_id_priority[i][1]}
+            dic2 = {'id': feature.id,
+                    'priority': feature.priority}
+            self.assertEqual(dic1, dic2)

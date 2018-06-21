@@ -14,6 +14,17 @@ def get_client_or_create(client_name):
     return client
 
 
+def swap_features_priority(client, feature, new_priority):
+    feature_to_swap = Feature.query.filter(
+        and_(Feature.client == client,
+             Feature.priority == new_priority)).first()
+    if feature_to_swap is not None:
+        feature_to_swap.priority = feature.priority
+
+    feature.priority = new_priority
+    db.session.commit()
+
+
 def reorder_features_for_client(client, feature):
     client_features = Feature.query.filter(
         and_(Feature.client == client,

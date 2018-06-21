@@ -1,3 +1,0 @@
-$(function () {
-    //TODO do initializations
-});

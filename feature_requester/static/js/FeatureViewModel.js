@@ -6,7 +6,7 @@ function FeatureViewModel() {
     self.description = ko.observable('');
     self.client = ko.observable('');
     self.target_date = ko.observable('');
-    self.priority = ko.observable('10');
+    self.priority = ko.observable('1');
     self.product_area = ko.observable('');
 
 
@@ -19,6 +19,9 @@ function FeatureViewModel() {
         priority: self.priority,
         product_area: self.product_area,
     };
+
+
+    self.currentFeature = ko.observable(null);
 
 
     self.Feature = ko.observable("");
@@ -55,9 +58,12 @@ function FeatureViewModel() {
                 priority: self.priority(),
                 product_area: self.product_area()
             });
+
+
             $.ajax({
                 url: '/api/feature',
                 type: 'POST',
+                cache: false,
                 contentType: "application/json",
                 accepts: "application/json",
                 dataType: 'json',
@@ -79,6 +85,7 @@ function FeatureViewModel() {
                 }
             });
         } else {
+            <!-- TODO add error messages -->
             alert('Please add required values!');
         }
 
@@ -86,10 +93,43 @@ function FeatureViewModel() {
     };
 
 
-    self.updateFeature = function (request) {
-        var num = ko.toJS(request.id);
-        console.log(num);
+    self.updateFeature = function (vm) {
+        self.currentFeature(vm);
+        $('#update_feature_modal').modal('show');
     };
+
+    self.patchFeature = function (vm) {
+        var vm_json = ko.toJS(vm);
+        if (vm_json.title !== '' && vm_json.description !== ''
+            && vm_json.client !== '' && vm_json.product_area !== '') {
+            $.ajax({
+                url: 'api/feature/' + vm.id,
+                type: 'PATCH',
+                cache: false,
+                contentType: "application/json",
+                accepts: "application/json",
+                dataType: 'json',
+                data: JSON.stringify({
+                    title: vm_json.title,
+                    client: vm_json.client,
+                    description: vm_json.description,
+                    target_date: vm_json.target_date,
+                    priority: vm_json.priority,
+                    product_area: vm_json.product_area
+                }),
+                success: function (data) {
+                    $('#update_feature_modal').modal('toggle');
+                    self.currentFeature(null);
+                    self.getFeatures()
+
+                },
+                error: function (error) {
+                    console.log("PATCH error: " + error.status);
+                }
+            });
+        }
+    };
+
 
     self.deleteFeature = function (request) {
         var num = ko.toJS(request.id);

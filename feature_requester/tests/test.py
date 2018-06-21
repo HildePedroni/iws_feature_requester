@@ -16,10 +16,7 @@ class Test(TestCase):
         resp = self.request_client.get('/')
         self.assertEqual(200, resp.status_code)
 
-    def test_patch_feature_url(self):
-        """patch on /api/feature/id should return status 200"""
-        resp = self.request_client.patch('/api/feature/1')
-        self.assertEqual(200, resp.status_code)
+
 
     def test_delete_feature_url(self):
         """delete on /api/feature/id should return status 200"""

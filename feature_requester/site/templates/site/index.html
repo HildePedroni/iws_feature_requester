@@ -79,7 +79,7 @@
                                 <button type="button"
                                         class="btn btn-primary alert alert-danger"
                                         data-dismiss="modal"
-                                        data-bind="click:$parent.updateFeature"
+                                        data-bind="click:$parent.deleteFeature"
 
                                 >Delete
                                 </button>
@@ -88,7 +88,7 @@
                                 <button type="button"
                                         class="btn btn-primary"
                                         data-dismiss="modal"
-                                        data-bind="click:$parent.deleteFeature"
+                                        data-bind="click:$parent.updateFeature"
                                 >
                                     Edit
                                 </button>
@@ -191,6 +191,96 @@
     </div>
 </div>
 
+
+<!-- Update Feature Modal -->
+<div class="modal fade" id="update_feature_modal" data-bind="with: currentFeature" tabindex="-1" role="dialog"
+     aria-labelledby="edit_modal_label" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <form id="form_save_feature">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="edit_modal_label">Edit
+                        Feature</h5>
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group ">
+                        <input type="text" class="form-control"
+                               placeholder="Give a intuitive title"
+                               data-bind="value: title">
+                    </div>
+
+                    <div class="form-group">
+                                <textarea class="form-control" rows="8"
+                                          placeholder="Now, write with details your feature"
+                                          data-bind="value: description"></textarea>
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <select class="form-control"
+                                data-bind="value: client.name">
+                            <option disabled selected hidden>
+                                Client
+                            </option>
+                            <option>Client A</option>
+                            <option>Client B</option>
+                            <option>Client C</option>
+                        </select>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <select class="form-control"
+                                data-bind="value: product_area">
+                            <option disabled selected hidden>Product
+                                area
+                            </option>
+                            <option>Polices</option>
+                            <option>Billing</option>
+                            <option>Claims</option>
+                            <option>Reports</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="number" min="1" class="form-control"
+                               placeholder="Priority"
+                               data-bind="value: priority"
+                        />
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="deliver-date">Deliver date</label>
+                        <div id="deliver-date" class="col-10">
+                            <input class="form-control" type="date"
+                                   value="2018-05-19"
+                                   data-bind="value: target_date"
+                                   required>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary"
+                            data-dismiss="modal">Cancel
+                    </button>
+                    <button type="button" class="btn btn-primary"
+                            data-bind="click:$root.patchFeature">Update Request
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="{{ url_for('static', filename='js/_knockout.js') }}"
         type="text/javascript"></script>
@@ -199,8 +289,6 @@
 <script src="{{ url_for('static', filename='js/utils.js') }}"
         type="text/javascript"></script>
 <script src="{{ url_for('static', filename='js/FeatureViewModel.js') }}"
-        type="text/javascript"></script>
-<script src="{{ url_for('static', filename='js/application.js') }}"
         type="text/javascript"></script>
 </body>
 
