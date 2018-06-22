@@ -1,16 +1,45 @@
-body {min-width: 300px;}
+body {
+    min-width: 300px;
+}
 
 header nav {
     background-color: lightgrey;
     margin-bottom: 15px;
 }
 
-.card-body p            { margin-bottom: 5px; }
-.cards-container .card  { margin-bottom: 15px; }
+.card-body p {
+    margin-bottom: 5px;
+}
 
-.feature-nav            { margin-bottom: 15px; }
+.cards-container .card {
+    margin-bottom: 15px;
+}
 
-.standard-modal textarea{
+.feature-nav {
+    margin-bottom: 15px;
+}
+
+.standard-modal textarea {
     resize: none;
     max-height: 100px;
+}
+
+.alert-fixed {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    min-height: 30px;
+    z-index: 9999;
+    border-radius: 0;
+
+}
+
+.alert-info {
+    background-color: forestgreen;
+    color: white;
+}
+
+.alert-warning {
+    background-color: red;
+    color: white;
 }

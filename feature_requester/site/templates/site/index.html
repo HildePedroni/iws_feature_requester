@@ -10,13 +10,11 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
             crossorigin="anonymous"></script>
-    <!--
-    <link rel="stylesheet" type="text/css"
-          href="https://s3.amazonaws.com/iwsfeaturerequester/static/css/styles.css">
-      -->
+
 
     <link rel="stylesheet"
           href="{{ url_for('static', filename='css/styles.css') }}">
+    
 </head>
 
 <body>
@@ -102,6 +100,15 @@
         </div>
     </div>
 
+    <div id="messages"
+         class="container alert alert-dismissible fade show alert-fixed">
+
+        <strong>
+            <span id="id_msg_span"></span>
+        </strong>
+
+    </div>
+
 </div>
 
 <!-- New Feature Modal -->
@@ -138,10 +145,7 @@
                         <label for="id_client">Client</label>
                         <select id="id_client" class="form-control"
                                 data-bind="value: client">
-                            <option disabled selected hidden>
-                                Client
-                            </option>
-                            <option>Client A</option>
+                            <option selected>Client A</option>
                             <option>Client B</option>
                             <option>Client C</option>
                         </select>
@@ -155,7 +159,7 @@
                             <option disabled selected hidden>Product
                                 area
                             </option>
-                            <option>Polices</option>
+                            <option selected>Polices</option>
                             <option>Billing</option>
                             <option>Claims</option>
                             <option>Reports</option>
@@ -166,7 +170,8 @@
                         <label for="priority">Priority</label>
                         <input id="priority" type="number" min="1"
                                class="form-control"
-                               placeholder="Priority"
+                               placeholder=1
+                               required
                                data-bind="value: priority"
                         />
                     </div>
@@ -177,7 +182,6 @@
                         <div id="deliver-date" class="col-12">
                             <input id="deliver-date" class="form-control"
                                    type="date"
-                                   value="2018-05-19"
                                    data-bind="value: target_date"
                                    required>
                         </div>
@@ -188,7 +192,7 @@
                             data-dismiss="modal">Cancel
                     </button>
                     <button type="button" class="btn btn-primary"
-                            data-bind="click:$root.save">Save Feature
+                            data-bind="click:$root.save">Save
                     </button>
                 </div>
             </div>
@@ -232,10 +236,7 @@
                         <label for="id_client">Client</label>
                         <select id="id_client" class="form-control"
                                 data-bind="value: client.name">
-                            <option disabled selected hidden>
-                                Client
-                            </option>
-                            <option>Client A</option>
+                            <option selected>Client A</option>
                             <option>Client B</option>
                             <option>Client C</option>
                         </select>
@@ -246,10 +247,7 @@
                         <label for="prod_area">Product Area</label>
                         <select id="prod_area" class="form-control"
                                 data-bind="value: product_area">
-                            <option disabled selected hidden>Product
-                                area
-                            </option>
-                            <option>Polices</option>
+                            <option selected>Polices</option>
                             <option>Billing</option>
                             <option>Claims</option>
                             <option>Reports</option>
@@ -260,7 +258,7 @@
                         <label for="priority">Priority</label>
                         <input id="priority" type="number" min="1"
                                class="form-control"
-                               placeholder="Priority"
+                               placeholder=1
                                data-bind="value: priority"
                         />
                     </div>
@@ -281,8 +279,7 @@
                             data-dismiss="modal">Cancel
                     </button>
                     <button type="button" class="btn btn-primary"
-                            data-bind="click:$root.patchFeature">Update
-                        Feature
+                            data-bind="click:$root.patchFeature">Save
                     </button>
                 </div>
             </div>
@@ -320,8 +317,9 @@
                 </button>
             </div>
         </div>
-        </form>
     </div>
+
+
 </div>
 
 
@@ -334,14 +332,6 @@
         type="text/javascript"></script>
 <script src="{{ url_for('static', filename='js/FeatureViewModel.js') }}"
         type="text/javascript"></script>
-<!--
-<script src="https://s3.amazonaws.com/iwsfeaturerequester/static/js/_knockout.js"
-        type="text/javascript"></script>
-<script src="https://s3.amazonaws.com/iwsfeaturerequester/static/js/_knockout_mapping.js"
-        type="text/javascript"></script>
-<script src="https://s3.amazonaws.com/iwsfeaturerequester/static/js/FeatureViewModel.js"
-        type="text/javascript"></script>
--->
 
 </body>
 

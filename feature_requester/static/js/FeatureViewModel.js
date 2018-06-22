@@ -1,6 +1,18 @@
+$(function () {
+    $('#messages').hide();
+
+});
+
+
 function FeatureViewModel() {
     var self = this;
     var api_base = 'api/feature';
+
+    //Messages
+    var allFieldsMessage = 'All fields is required!';
+    var createFeatureMessage = 'Feature created with success!';
+    var somethingWrongMsg = 'Ooops! Something went wrong!';
+    var featureUpdatedMsg = 'Feature updated with success!';
 
     self.id = ko.observable('');
     self.title = ko.observable('');
@@ -41,15 +53,18 @@ function FeatureViewModel() {
                 self.features(data.features);
             },
             error: function (error) {
-                console.log("POST error: " + error.status);
+                console.log(error.status_code);
+                showMessage(somethingWrongMsg + ' Loading features problems!', true);
             }
         });
     };
 
 
     self.save = function () {
-        if (self.Feature.title !== '' && self.Feature.description !== ''
-            && self.Feature.client !== '' && self.Feature.product_area !== '') {
+
+        if (self.title() !== '' && self.description() !== ''
+            && self.client() !== '' && self.product_area() !== ''
+            && self.target_date() !== '' && self.priority() !== '') {
 
             var data = JSON.stringify({
                 title: self.title(),
@@ -59,7 +74,6 @@ function FeatureViewModel() {
                 priority: self.priority(),
                 product_area: self.product_area()
             });
-
 
             $.ajax({
                 url: api_base,
@@ -71,23 +85,24 @@ function FeatureViewModel() {
                 data: data,
                 success: function (data) {
                     self.title(null);
-                    self.client('Client');
+                    self.client(null);
                     self.description(null);
                     self.target_date(null);
                     self.priority(1);
-                    self.product_area('Product area');
+                    self.product_area(null);
                     self.getFeatures();
                     $('#new_feature_modal').modal('toggle');
                     $('#form_save_feature').trigger('reset');
 
+                    showMessage(createFeatureMessage, false);
+
                 },
                 error: function (error) {
-                    console.log("POST error: " + error.status);
+                    showMessage(somethingWrongMsg, true);
                 }
             });
         } else {
-            <!-- TODO add error messages -->
-            alert('Please add required values!');
+            showMessage(allFieldsMessage, true);
         }
 
 
@@ -101,8 +116,9 @@ function FeatureViewModel() {
 
     self.patchFeature = function (vm) {
         var vm_json = ko.toJS(vm);
-        if (vm_json.title !== '' && vm_json.description !== ''
-            && vm_json.client !== '' && vm_json.product_area !== '') {
+        if (vm.title !== '' && vm.description !== ''
+            && vm.client !== '' && vm.product_area !== ''
+            && vm.target_date !== '' && vm.priority !== '') {
             $.ajax({
                 url: api_base + '/' + vm.id,
                 type: 'PATCH',
@@ -121,13 +137,16 @@ function FeatureViewModel() {
                 success: function (data) {
                     $('#update_feature_modal').modal('toggle');
                     self.currentFeature(null);
-                    self.getFeatures()
+                    self.getFeatures();
+                    showMessage(featureUpdatedMsg, false);
 
                 },
                 error: function (error) {
-                    console.log("PATCH error: " + error.status);
+                    showMessage(somethingWrongMsg, true);
                 }
             });
+        } else {
+            showMessage(allFieldsMessage, true);
         }
     };
 
@@ -145,6 +164,7 @@ function FeatureViewModel() {
             success: function (data) {
                 self.features.remove(vm);
                 $('#delete_feature_modal').modal('toggle');
+                showMessage('Feature ' + vm_json.title + ' deleted!', false);
             }
         });
 
@@ -155,5 +175,24 @@ function FeatureViewModel() {
 
 
 }
+
+function showMessage(text, error) {
+
+    var msg_box = $('#messages');
+    if (error) {
+        msg_box.addClass('alert-warning');
+    } else {
+        msg_box.addClass('alert-info');
+    }
+
+    $('#id_msg_span').text(text);
+
+    msg_box.fadeTo(2000, 1000).slideUp(500, function () {
+        msg_box.slideUp(2000);
+        msg_box.removeClass('alert-warning');
+        msg_box.removeClass('alert-info');
+    });
+}
+
 
 ko.applyBindings(new FeatureViewModel());
