@@ -87,7 +87,7 @@ class TestFeature(BaseTest):
         self.assertEqual(result_id, expected_id)
 
     def test_patch_invalid_id(self):
-        """should return status 404"""
+        """Invalid PATCH data should return status 404"""
         url = 'api/feature/{}'.format(200)
         data = {
             'client': {
@@ -108,7 +108,7 @@ class TestFeature(BaseTest):
         self.assertEqual(response.status_code, 404)
 
     def test_patch_update(self):
-        """Should update the priority"""
+        """Feature should be updated from priority 3 to 1"""
         # first we create a feature
         self.a_feture = self.create_feature(client_name='Client A', priority=3)
         self.a_feture.save()
@@ -127,8 +127,10 @@ class TestFeature(BaseTest):
         url = 'api/feature/{}'.format(self.a_feture.id)
         response = self.request_client.patch(
             url,
-            headers={'Accept': 'application/json',
-                     'Content-Type': 'application/json'},
+            headers={
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
             data=json.dumps(data))
 
         result_data = json.loads(response.data.decode('utf-8'))
@@ -138,6 +140,30 @@ class TestFeature(BaseTest):
             result_data['feature']['id'], result_data['feature']['priority'])
 
         self.assertEqual(result, expected_id_priority)
+
+    def test_delete_feature(self):
+        """Successfully deleted feature shoul return status 200 """
+        self.a_feture = self.create_feature(client_name='Client A', priority=3)
+        self.a_feture.save()
+        url = 'api/feature/{}'.format(self.a_feture.id)
+        response = self.request_client.delete(
+            url,
+            headers={'Accept': 'application/json',
+                     'Content-Type': 'application/json'},
+            data=json.dumps({}))
+
+        self.assertEqual(response.status_code, 200)
+
+    def test_delete_feature_invalid(self):
+        """Invalid Ids should return status 404"""
+        url = 'api/feature/{}'.format(100)
+        response = self.request_client.delete(
+            url,
+            headers={'Accept': 'application/json',
+                     'Content-Type': 'application/json'},
+            data=json.dumps({}))
+
+        self.assertEqual(response.status_code, 404)
 
     def post_data(self, url, data):
         """Auxiliar method to send post requests with

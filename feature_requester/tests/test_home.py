@@ -15,10 +15,3 @@ class Test(TestCase):
         """get on / should return status 200"""
         resp = self.request_client.get('/')
         self.assertEqual(200, resp.status_code)
-
-
-
-    def test_delete_feature_url(self):
-        """delete on /api/feature/id should return status 200"""
-        resp = self.request_client.delete('/api/feature/1')
-        self.assertEqual(200, resp.status_code)

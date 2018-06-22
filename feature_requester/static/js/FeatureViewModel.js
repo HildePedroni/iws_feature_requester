@@ -1,12 +1,13 @@
 function FeatureViewModel() {
     var self = this;
+    var api_base = 'api/feature';
 
     self.id = ko.observable('');
     self.title = ko.observable('');
     self.description = ko.observable('');
     self.client = ko.observable('');
     self.target_date = ko.observable('');
-    self.priority = ko.observable('1');
+    self.priority = ko.observable(1);
     self.product_area = ko.observable('');
 
 
@@ -30,7 +31,7 @@ function FeatureViewModel() {
 
     self.getFeatures = function () {
         $.ajax({
-            url: '/api/feature',
+            url: api_base,
             cache: false,
             type: 'GET',
             contentType: "application/json",
@@ -61,7 +62,7 @@ function FeatureViewModel() {
 
 
             $.ajax({
-                url: '/api/feature',
+                url: api_base,
                 type: 'POST',
                 cache: false,
                 contentType: "application/json",
@@ -69,13 +70,13 @@ function FeatureViewModel() {
                 dataType: 'json',
                 data: data,
                 success: function (data) {
-                    self.features.unshift(data.feature);
-                    self.title = '';
-                    self.description = '';
-                    self.client = '';
-                    self.target_date = '';
-                    self.priority = '';
-                    self.product_area = '';
+                    self.title(null);
+                    self.client('Client');
+                    self.description(null);
+                    self.target_date(null);
+                    self.priority(1);
+                    self.product_area('Product area');
+                    self.getFeatures();
                     $('#new_feature_modal').modal('toggle');
                     $('#form_save_feature').trigger('reset');
 
@@ -103,7 +104,7 @@ function FeatureViewModel() {
         if (vm_json.title !== '' && vm_json.description !== ''
             && vm_json.client !== '' && vm_json.product_area !== '') {
             $.ajax({
-                url: 'api/feature/' + vm.id,
+                url: api_base + '/' + vm.id,
                 type: 'PATCH',
                 cache: false,
                 contentType: "application/json",
@@ -130,12 +131,25 @@ function FeatureViewModel() {
         }
     };
 
-
-    self.deleteFeature = function (request) {
-        var num = ko.toJS(request.id);
-        console.log(num);
+    self.openDeleteModal = function (vm) {
+        self.currentFeature(vm);
+        $('#delete_feature_modal').modal('show');
     };
 
+    self.deleteFeature = function (vm) {
+        var vm_json = ko.toJS(vm);
+        $.ajax({
+            url: api_base + '/' + vm_json.id,
+            type: 'DELETE',
+            data: {},
+            success: function (data) {
+                self.features.remove(vm);
+                $('#delete_feature_modal').modal('toggle');
+            }
+        });
+
+
+    };
 
     self.getFeatures();
 

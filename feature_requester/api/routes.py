@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request
 from sqlalchemy import and_
 
+from feature_requester import db
 from feature_requester.api import utils
 from feature_requester.models import Feature, FeatureSchema
 
@@ -91,4 +92,8 @@ def update_feature(feature_id):
 # Delete One particular Feature
 @api.route('/feature/<feature_id>', methods=['DELETE'])
 def delete_feature(feature_id):
-    return 'deleting this feature {}'.format(feature_id)
+    feature = Feature.query.get_or_404(feature_id)
+    feature_title = feature.title
+    db.session.delete(feature)
+    db.session.commit()
+    return jsonify({'message': feature_title + ' Deleted!'}), 200
