@@ -79,7 +79,7 @@ The above variables are required, but with except DEBUG they all can be left bla
 If you set DEBUG to false, you will have to set-up a MySQL database, or change the config.py file to use whatever database you like
 
 ##### 5 - set up the database
-    For development SQLite was used. 
+For development SQLite was used. 
 To create the database access the python interactive shell at the project root
 ````console
     python
