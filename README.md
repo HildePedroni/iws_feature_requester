@@ -9,7 +9,7 @@ request new features for their software.
 
 Whit this app, the client create a request that will be exposed for developers who will implement them.
 
-<strong>The project lives at:</strong>
+<strong>The project can be viwed live at:</strong>
 
 http://iws-feature-requester-dev.us-east-1.elasticbeanstalk.com/
 
@@ -63,8 +63,7 @@ and better error ans success feedbacks.
     pip install -r Requirements.txt 
 ````
 
-#####4 - Create a .env file on project root and
-    add the following variables
+#####4 - Create a .env file on project root and add the following variables:
 ````dotenv
 DEBUG=True
 
@@ -121,3 +120,5 @@ After configuration done, use
     eb deploy
 ```` 
 to deploy the application
+
+Hope you enjoy
