@@ -18,6 +18,22 @@ http://iws-feature-requester-dev.us-east-1.elasticbeanstalk.com/
 ## Developement
 
 The app is being develped with Flask framework for backend and knockoutJS for front
+
+
+## Technology used
+####developement
+- Backend
+
+Python 3.6, Flask, SqliteAlchemy, Sqlite
+
+- Front 
+Bootstrap 4, KnockoutJS, Jquery
+
+####Deploy environment
+- AWS Elastic Beanstalk.
+- Deploy with eb CLI
+- Database Mysql
+
     
 
 ### Set up environment
@@ -28,31 +44,45 @@ The app is being develped with Flask framework for backend and knockoutJS for fr
 ````
 
 2 - create a virtual env
-    - Developed with python 3.6
+- Developed with python 3.6
     
-````console
-    python3 -m venv env 
 ````
+console
+python3 -m venv env
+ 
+````
+- Activate
+
+```console
+source env/bin/activate
+```
+
 3 - install requirements
 ````console
-    pip install -r Requirements.txt 
+pip install -r Requirements.txt 
 ````
 
 4 - set up the database
-    We use sqlite for developement
-    Access python interactive shell at project root
+    For developement Sqlite was used. To create the database
+    access the python interactive shell at project root
 ````console
-    python
-    >>> from feature_requester import create_app
-    >>> from feature_requester.models import db
-    >>> db.create_all(app=create_app())
+python
+>>> from feature_requester import create_app
+>>> from feature_requester.models import db
+>>> db.create_all(app=create_app())
 ````    
 
 5 - run tests
 
 ````console
-    make tests 
+make tests 
 ````
+
+6 - To run the application locally, run
+````console
+python application.py
+````
+
 
 ### Deploy the application
 

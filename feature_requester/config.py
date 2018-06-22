@@ -19,6 +19,10 @@ class Config:
         DB_URI = 'sqlite:///{}'.format(DB_PATH)
         SQLALCHEMY_DATABASE_URI = DB_URI
 
+    AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
+    FLASKS3_BUCKET_NAME = 'iwsfeaturerequester'
+
 
 class TestConfig:
     DEBUG = True

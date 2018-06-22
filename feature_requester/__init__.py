@@ -1,11 +1,13 @@
 from flask import Flask
 from flask_marshmallow import Marshmallow
+from flask_s3 import FlaskS3
 from flask_sqlalchemy import SQLAlchemy
 
 from feature_requester.config import Config
 
 db = SQLAlchemy()
 ma = Marshmallow()
+s3 = FlaskS3()
 
 
 def create_app(config_class=Config):
@@ -14,6 +16,7 @@ def create_app(config_class=Config):
 
     db.init_app(app)
     ma.init_app(app)
+    s3.init_app(app)
 
     from feature_requester.api.routes import api
     from feature_requester.site.routes import site

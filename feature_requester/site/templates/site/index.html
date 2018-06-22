@@ -10,6 +10,11 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
             crossorigin="anonymous"></script>
+    <!--
+    <link rel="stylesheet" type="text/css"
+          href="https://s3.amazonaws.com/iwsfeaturerequester/static/css/styles.css">
+      -->
+
     <link rel="stylesheet"
           href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
@@ -321,12 +326,23 @@
 
 
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+
+
 <script src="{{ url_for('static', filename='js/_knockout.js') }}"
         type="text/javascript"></script>
 <script src="{{ url_for('static', filename='js/_knockout_mapping.js') }}"
         type="text/javascript"></script>
 <script src="{{ url_for('static', filename='js/FeatureViewModel.js') }}"
         type="text/javascript"></script>
+<!--
+<script src="https://s3.amazonaws.com/iwsfeaturerequester/static/js/_knockout.js"
+        type="text/javascript"></script>
+<script src="https://s3.amazonaws.com/iwsfeaturerequester/static/js/_knockout_mapping.js"
+        type="text/javascript"></script>
+<script src="https://s3.amazonaws.com/iwsfeaturerequester/static/js/FeatureViewModel.js"
+        type="text/javascript"></script>
+-->
+
 </body>
 
 </html>
