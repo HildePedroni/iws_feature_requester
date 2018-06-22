@@ -6,6 +6,10 @@ from feature_requester.models import Client, Feature
 
 
 class BaseTest(TestCase):
+    """
+        This is a class to hold test utils methods,
+        and test and database creation
+    """
 
     @classmethod
     def setUpClass(cls):
