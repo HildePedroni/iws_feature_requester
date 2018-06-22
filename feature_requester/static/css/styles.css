@@ -1,3 +1,16 @@
-.my_styled_button {
-    margin: 20px 0px;
+body {min-width: 300px;}
+
+header nav {
+    background-color: lightgrey;
+    margin-bottom: 15px;
+}
+
+.card-body p            { margin-bottom: 5px; }
+.cards-container .card  { margin-bottom: 15px; }
+
+.feature-nav            { margin-bottom: 15px; }
+
+.standard-modal textarea{
+    resize: none;
+    max-height: 100px;
 }

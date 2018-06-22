@@ -15,103 +15,99 @@
 </head>
 
 <body>
-<nav class="navbar navbar-light navbar-expand-md">
-    <div class="container-fluid"><a class="navbar-brand" href="#"><strong>Feature</strong>
-        Requester</a>
-        <button class="navbar-toggler" data-toggle="collapse"
-                data-target="#navcol-1"><span
-                class="sr-only">Toggle navigation</span><span
-                class="navbar-toggler-icon"></span></button>
-        <div
-                class="collapse navbar-collapse" id="navcol-1">
-            <ul class="nav navbar-nav ml-auto"></ul>
-            <ul class="nav navbar-nav"></ul>
+
+<header>
+    <nav class="navbar navbar-light navbar-expand-md">
+        <div class="container-fluid"><a
+                class="navbar-brand"><strong>IWS</strong> Feature Requester</a>
+            <div
+                    class="collapse navbar-collapse" id="navcol-1">
+                <ul class="nav navbar-nav ml-auto"></ul>
+                <ul class="nav navbar-nav"></ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<div class="container cards-container">
+    <div class="row feature-nav">
+        <div class="col-sm-12">
+            <button class="btn btn-primary my_styled_button" type="button"
+                    data-toggle="modal" data-target="#new_feature_modal">New
+                Feature
+            </button>
         </div>
     </div>
-</nav>
-<div class="container">
-    <div>
-        <button class="btn btn-primary my_styled_button" type="button"
-                data-toggle="modal" data-target="#new_feature_modal">New Feature
-        </button>
-    </div>
-    <div class="card-colums">
 
-        <div data-bind="foreach:features">
 
+    <div class="row" data-bind="foreach:features">
+        <div class="col-sm-12 col-md-6">
             <div class="card">
                 <div class="card-body">
                     <h3 class="text-center card-title" data-bind="text: title">
-                        Feature Title</h3>
-                    <h6 class="text-muted card-subtitle mb-2">
+                        Feature Title
+                    </h3>
+                    <p class="badge badge-warning badge-primary badge-pill card-subtitle mb-2">
+                        Priority: <span data-bind="text: priority"></span>
+                    </p>
+                    <p>
                         Client: <span
                             data-bind="text: client.name">Client A</span>
-                    </h6>
-                    <h6 class="text-muted card-subtitle mb-2">
-                        Product Area: <span data-bind="text: product_area">Billing</span>
-                    </h6>
-                    <h6 class="text-muted card-subtitle mb-2">Due Date : <span
-                            data-bind="text: target_date">12/27/2018</span>
-                    </h6>
-                    <label for="id_desc">Description: </label>
+                    </p>
+                    <p>
+                        Product Area: <span
+                            data-bind="text: product_area">Billing</span>
+                    </p>
+                    <p>Due Date :
+                        <span
+                                data-bind="text: target_date">12/27/2018</span>
+                    </p>
+                    <p>Description: </p>
                     <p id="id_desc" class="card-text"
-                       data-bind="text: description">Nullam id
-                        dolor id nibh ultricies vehicula ut id elit. Cras justo
-                        odio, dapibus ac facilisis in, egestas eget quam. Donec
+                       data-bind="text: description">
+                        Nullam id
+                        dolor id nibh ultricies vehicula ut id elit.
+                        Cras
+                        justo
+                        odio, dapibus ac facilisis in, egestas eget
+                        quam.
+                        Donec
                         id elit non mi porta gravida at eget metus.</p>
-                    <div>
-                        <div class="row">
-                            <div class="col offset-lg-0 align-self-center">
-                                <h4 class="text-right text-muted mb-2">Priority
-                                    :</h4>
-                            </div>
-                            <div class="col float-left">
-                                <span class="badge badge-pill badge-warning"
-                                      data-bind="text: priority"
-                                      style="font-size:20px;margin:10px;">
-                                    42
-                                </span></div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="row">
-                            <div class="col offset-lg-0 align-self-center">
-                                <button type="button"
-                                        class="btn btn-primary alert alert-danger"
-                                        data-dismiss="modal"
-                                        data-bind="click:$parent.openDeleteModal"
 
-                                >Delete
-                                </button>
-                            </div>
-                            <div class="col float-left">
-                                <button type="button"
-                                        class="btn btn-primary"
-                                        data-dismiss="modal"
-                                        data-bind="click:$parent.updateFeature"
-                                >
-                                    Edit
-                                </button>
+                    <div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="btn-group float-right">
+                                    <button type="button"
+                                            class="btn btn-sm btn-primary"
+                                            data-bind="click:$parent.updateFeature">
+                                        Edit
+                                    </button>
+                                    <button type="button"
+                                            class="btn btn-sm btn-danger"
+                                            data-bind="click:$parent.openDeleteModal">
+                                        Delete
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-
         </div>
     </div>
+
 </div>
 
 <!-- New Feature Modal -->
-<div class="modal fade" id="new_feature_modal" tabindex="-1" role="dialog"
+<div class="modal fade standard-modal" id="new_feature_modal" tabindex="-1"
+     role="dialog"
      aria-labelledby="modal_label" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <form id="form_save_feature">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modal_label">Modal
-                        title</h5>
+                    <h5 class="modal-title">New Feature</h5>
                     <button type="button" class="close" data-dismiss="modal"
                             aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -119,21 +115,23 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group ">
-                        <input type="text" class="form-control"
+                        <label for="id_title">Title</label>
+                        <input id="id_title" type="text" class="form-control"
                                placeholder="Give a intuitive title"
                                data-bind="value: title">
                     </div>
 
                     <div class="form-group">
-                                <textarea class="form-control" rows="8"
-                                          placeholder="Now, write with details your feature"
-                                          data-bind="value: description"></textarea>
+                        <label for="id_desc">Description</label>
+                        <textarea id="id_desc" class="form-control" rows="8"
+                                  placeholder="Now, write with details your feature"
+                                  data-bind="value: description"></textarea>
                     </div>
 
 
                     <div class="form-group">
-
-                        <select class="form-control"
+                        <label for="id_client">Client</label>
+                        <select id="id_client" class="form-control"
                                 data-bind="value: client">
                             <option disabled selected hidden>
                                 Client
@@ -146,8 +144,8 @@
                     </div>
 
                     <div class="form-group">
-
-                        <select class="form-control"
+                        <label for="prod_area">Product Area</label>
+                        <select id="prod_area" class="form-control"
                                 data-bind="value: product_area">
                             <option disabled selected hidden>Product
                                 area
@@ -160,7 +158,9 @@
                     </div>
 
                     <div class="form-group">
-                        <input type="number" min="1" class="form-control"
+                        <label for="priority">Priority</label>
+                        <input id="priority" type="number" min="1"
+                               class="form-control"
                                placeholder="Priority"
                                data-bind="value: priority"
                         />
@@ -169,14 +169,14 @@
                     <div class="form-group">
 
                         <label for="deliver-date">Deliver date</label>
-                        <div id="deliver-date" class="col-10">
-                            <input class="form-control" type="date"
+                        <div id="deliver-date" class="col-12">
+                            <input id="deliver-date" class="form-control"
+                                   type="date"
                                    value="2018-05-19"
                                    data-bind="value: target_date"
                                    required>
                         </div>
                     </div>
-
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary"
@@ -193,7 +193,7 @@
 
 
 <!-- Update Feature Modal -->
-<div class="modal fade" id="update_feature_modal"
+<div class="modal fade standard-modal" id="update_feature_modal"
      data-bind="with: currentFeature" tabindex="-1" role="dialog"
      aria-labelledby="edit_modal_label" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -209,21 +209,23 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group ">
-                        <input type="text" class="form-control"
+                        <label for="id_title">Title</label>
+                        <input id="id_title" type="text" class="form-control"
                                placeholder="Give a intuitive title"
                                data-bind="value: title">
                     </div>
 
                     <div class="form-group">
-                                <textarea class="form-control" rows="8"
-                                          placeholder="Now, write with details your feature"
-                                          data-bind="value: description"></textarea>
+                        <label for="id_desc">Description</label>
+                        <textarea id="id_desc" class="form-control" rows="8"
+                                  placeholder="Now, write with details your feature"
+                                  data-bind="value: description"></textarea>
                     </div>
 
 
                     <div class="form-group">
-
-                        <select class="form-control"
+                        <label for="id_client">Client</label>
+                        <select id="id_client" class="form-control"
                                 data-bind="value: client.name">
                             <option disabled selected hidden>
                                 Client
@@ -236,8 +238,8 @@
                     </div>
 
                     <div class="form-group">
-
-                        <select class="form-control"
+                        <label for="prod_area">Product Area</label>
+                        <select id="prod_area" class="form-control"
                                 data-bind="value: product_area">
                             <option disabled selected hidden>Product
                                 area
@@ -250,7 +252,9 @@
                     </div>
 
                     <div class="form-group">
-                        <input type="number" min="1" class="form-control"
+                        <label for="priority">Priority</label>
+                        <input id="priority" type="number" min="1"
+                               class="form-control"
                                placeholder="Priority"
                                data-bind="value: priority"
                         />
@@ -259,21 +263,21 @@
                     <div class="form-group">
 
                         <label for="deliver-date">Deliver date</label>
-                        <div id="deliver-date" class="col-10">
+                        <div id="deliver-date" class="col-12">
                             <input class="form-control" type="date"
                                    value="2018-05-19"
                                    data-bind="value: target_date"
                                    required>
                         </div>
                     </div>
-
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary"
                             data-dismiss="modal">Cancel
                     </button>
                     <button type="button" class="btn btn-primary"
-                            data-bind="click:$root.patchFeature">Update Feature
+                            data-bind="click:$root.patchFeature">Update
+                        Feature
                     </button>
                 </div>
             </div>
@@ -297,8 +301,10 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p>Deleting feature : <span data-bind="text: title"></span></p>
-                <h3>Are you sure ?</h3>
+                <p>Are you sure you wants to delete feature
+                    <strong data-bind="text: title"></strong>
+                </p>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary"

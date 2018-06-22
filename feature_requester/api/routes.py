@@ -7,6 +7,7 @@ from feature_requester.models import Feature, FeatureSchema
 
 api = Blueprint('api', __name__)
 
+#TODO comentar cada endpoint adicionando o que faz e o que
 
 @api.route('/feature', methods=['GET'])
 def get_all_features():
@@ -52,7 +53,6 @@ def create_new_feature():
     return jsonify({'feature': feature_schema.dump(feature).data}), 201
 
 
-# PATCH Feature
 @api.route('/feature/<feature_id>', methods=['PATCH'])
 def update_feature(feature_id):
     data = request.get_json()
