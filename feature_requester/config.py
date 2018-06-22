@@ -22,11 +22,13 @@ class Config:
     AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
     AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
     FLASKS3_BUCKET_NAME = 'iwsfeaturerequester'
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
 
-
+#Used by tests
 class TestConfig:
     DEBUG = True
     DB_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)),
                            'test_database.db')
     DB_URI = 'sqlite:///{}'.format(DB_PATH)
     SQLALCHEMY_DATABASE_URI = DB_URI
+    SQLALCHEMY_TRACK_MODIFICATIONS = False

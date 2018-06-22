@@ -1,5 +1,4 @@
 from flask import Blueprint, jsonify, request
-from sqlalchemy import and_
 
 from feature_requester import db
 from feature_requester.api import utils
@@ -7,10 +6,9 @@ from feature_requester.models import Feature, FeatureSchema
 
 api = Blueprint('api', __name__)
 
-#TODO comentar cada endpoint adicionando o que faz e o que
-
 @api.route('/feature', methods=['GET'])
 def get_all_features():
+    """Returns a json array of all fetures in the database"""
     features = Feature.query.order_by(Feature.priority)
     feature_schema = FeatureSchema(many=True)
     output = feature_schema.dump(features).data
@@ -19,6 +17,9 @@ def get_all_features():
 
 @api.route('/feature/<feature_id>', methods=['GET'])
 def get_one_feature(feature_id):
+    """Return a specific feature by id
+       param required feature_id
+    """
     feature_schema = FeatureSchema()
     feature = Feature.query.get_or_404(feature_id)
     output = feature_schema.dump(feature)
@@ -28,6 +29,15 @@ def get_one_feature(feature_id):
 
 @api.route('/feature', methods=['POST'])
 def create_new_feature():
+    """Create a new feature for the given Client
+        params:
+        title - string
+        description - text
+        client name - string
+        product_area - string
+        priority - integer
+    """
+
     feature_schema = FeatureSchema()
     data = request.get_json()
     errors = feature_schema.validate(data)
@@ -55,8 +65,10 @@ def create_new_feature():
 
 @api.route('/feature/<feature_id>', methods=['PATCH'])
 def update_feature(feature_id):
+    """Update a given feature by id
+       param required id
+    """
     data = request.get_json()
-
     feature_schema = FeatureSchema()
     errors = feature_schema.validate(data)
     if errors:
@@ -66,8 +78,7 @@ def update_feature(feature_id):
     client = utils.get_client_or_create(
         client_name=client_name
     )
-    feature = Feature.query.filter(and_(Feature.client == client,
-                                        Feature.id == feature_id)).first()
+    feature = Feature.query.get_or_404(feature_id)
     if not feature:
         return jsonify({'errors': 'Feature not found'}), 404
 
@@ -92,6 +103,10 @@ def update_feature(feature_id):
 # Delete One particular Feature
 @api.route('/feature/<feature_id>', methods=['DELETE'])
 def delete_feature(feature_id):
+    """Delete the given feature
+       param required id
+    """
+
     feature = Feature.query.get_or_404(feature_id)
     feature_title = feature.title
     db.session.delete(feature)
