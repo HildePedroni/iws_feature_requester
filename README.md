@@ -24,7 +24,7 @@ and better error ans success feedbacks.
 
 
 ## Technologies used
-####For developement
+#### For developement
 - Backend
 
     Python 3.6, Flask, SqliteAlchemy, Sqlite
@@ -32,22 +32,22 @@ and better error ans success feedbacks.
 - Frontend 
     Bootstrap 4, KnockoutJS, Jquery
 
-####For deployment
+#### For deployment
 - AWS Elastic Beanstalk.
 - Deploy with eb CLI
 - Database Mysql
 
 
-##To run the project on a local machine
+## To run the project on a local machine
     
 ### Set up environment
 
-#####1 - clone the project
+##### 1 - clone the project
 ````console
     git clone https://github.com/HildePedroni/iws_feature_requester.git
 ````
 
-#####2 - create a virtual env
+##### 2 - create a virtual env
     
 ````console
     python3 -m venv env
@@ -58,12 +58,12 @@ and better error ans success feedbacks.
     source env/bin/activate
 ```
 
-#####3 - install requirements
+##### 3 - install requirements
 ````console
     pip install -r Requirements.txt 
 ````
 
-#####4 - Create a .env file on project root and add the following variables:
+##### 4 - Create a .env file on project root and add the following variables:
 ````dotenv
 DEBUG=True
 
@@ -78,7 +78,7 @@ AWS_SECRET_ACCESS_KEY=your_access_key_or_leave_blak
 The above variables are required, but with except DEBUG they all can be left blank        
 If you set DEBUG to false, you will have to set-up a MySQL database, or change the config.py file to use whatever database you like
 
-#####5 - set up the database
+##### 5 - set up the database
     For development SQLite was used. 
 To create the database access the python interactive shell at the project root
 ````console
@@ -88,18 +88,18 @@ To create the database access the python interactive shell at the project root
     >>> db.create_all(app=create_app())
 ````    
 
-#####6 - run tests
+##### 6 - run tests
 
 ````console
     make test
 ````
 
-#####7 - To run the application locally, run
+##### 7 - To run the application locally, run
 ````console
     python application.py
 ````
 
-##To Deploy the application
+## To Deploy the application
 
 The application is deployed with AWS elastic beanstalk cli. 
 With a mysql database
