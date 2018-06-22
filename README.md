@@ -5,86 +5,102 @@
 ## About
 
 A simple Flask application made to clients ho wants to have a better way to 
-request new features for their softwares.
+request new features for their software.
 
-Whit this app, the client create a request that will be exposed for developer with a few steps.
-
+Whit this app, the client create a request that will be exposed for developers who will implement them.
 
 <strong>The project lives at:</strong>
 
 http://iws-feature-requester-dev.us-east-1.elasticbeanstalk.com/
 
 
-## Developement
+## App stage
+This project is a minimum viable product (MVP) based on given requirements.
+A lot of features can be implemented to make it a complete product. 
+Features like filtering by clients, creating new clients and so on.
+The UX can be improved too, things like card color changing when due date approaches 
+and better error ans success feedbacks.
 
-The app is being develped with Flask framework for backend and knockoutJS for front
 
 
-## Technology used
-####developement
+## Technologies used
+####For developement
 - Backend
 
-Python 3.6, Flask, SqliteAlchemy, Sqlite
+    Python 3.6, Flask, SqliteAlchemy, Sqlite
 
-- Front 
-Bootstrap 4, KnockoutJS, Jquery
+- Frontend 
+    Bootstrap 4, KnockoutJS, Jquery
 
-####Deploy environment
+####For deployment
 - AWS Elastic Beanstalk.
 - Deploy with eb CLI
 - Database Mysql
 
-    
 
+##To run the project on a local machine
+    
 ### Set up environment
 
-1 - clone the project
+#####1 - clone the project
 ````console
     git clone https://github.com/HildePedroni/iws_feature_requester.git
 ````
 
-2 - create a virtual env
-- Developed with python 3.6
+#####2 - create a virtual env
     
+````console
+    python3 -m venv env
 ````
-console
-python3 -m venv env
- 
-````
-- Activate
+- Activate the virtual environment
 
 ```console
-source env/bin/activate
+    source env/bin/activate
 ```
 
-3 - install requirements
+#####3 - install requirements
 ````console
-pip install -r Requirements.txt 
+    pip install -r Requirements.txt 
 ````
 
-4 - set up the database
-    For developement Sqlite was used. To create the database
-    access the python interactive shell at project root
+#####4 - Create a .env file on project root and
+    add the following variables
+````dotenv
+DEBUG=True
+
+DB_HOSTNAME=localhost
+DB_USERNAME=root
+DB_PASSWORD=root
+DB_NAME=ebdb
+
+AWS_ACCESS_KEY_ID=Your_key_id_or_leave_blank
+AWS_SECRET_ACCESS_KEY=your_access_key_or_leave_blak
+````    
+The above variables are required, but with except DEBUG they all can be left blank        
+If you set DEBUG to false, you will have to set-up a MySQL database, or change the config.py file to use whatever database you like
+
+#####5 - set up the database
+    For development SQLite was used. 
+To create the database access the python interactive shell at the project root
 ````console
-python
->>> from feature_requester import create_app
->>> from feature_requester.models import db
->>> db.create_all(app=create_app())
+    python
+    >>> from feature_requester import create_app
+    >>> from feature_requester.models import db
+    >>> db.create_all(app=create_app())
 ````    
 
-5 - run tests
+#####6 - run tests
 
 ````console
-make tests 
+    make test
 ````
 
-6 - To run the application locally, run
+#####7 - To run the application locally, run
 ````console
-python application.py
+    python application.py
 ````
 
-
-### Deploy the application
+##To Deploy the application
 
 The application is deployed with AWS elastic beanstalk cli. 
 With a mysql database
@@ -102,6 +118,6 @@ You have to have the aws credentials to config the environment
 After configuration done, use 
 
 ```console
-eb deploy
+    eb deploy
 ```` 
 to deploy the application
