@@ -11,7 +11,8 @@ Whit this app, the client create a request that will be exposed for developers w
 
 <strong>The project can be viwed live at:</strong>
 
-http://iws-feature-requester-dev.us-east-1.elasticbeanstalk.com/
+<strong>The app is not live anymore:</strong>
+
 
 
 ## App stage
