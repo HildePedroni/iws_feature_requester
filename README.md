@@ -11,7 +11,7 @@ Whit this app, the client create a request that will be exposed for developers w
 
 <strong>The project can be viwed live at:</strong>
 
-<strong>The app is not live anymore:</strong>
+<strong>The app is not live anymore</strong>
 
 
 
