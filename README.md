@@ -4,12 +4,12 @@
 
 ## About
 
-A simple Flask application made to clients ho wants to have a better way to 
+A simple Flask application made to clients who wants to have a better way to 
 request new features for their software.
 
-Whit this app, the client create a request that will be exposed for developers who will implement them.
+With this app, the client creates a request that will be exposed to developers who implement them.
 
-<strong>The project can be viwed live at:</strong>
+<strong>The project can be viewed live at:</strong>
 
 <strong>The app is not live anymore</strong>
 
@@ -18,14 +18,14 @@ Whit this app, the client create a request that will be exposed for developers w
 ## App stage
 This project is a minimum viable product (MVP) based on given requirements.
 A lot of features can be implemented to make it a complete product. 
-Features like filtering by clients, creating new clients and so on.
-The UX can be improved too, things like card color changing when due date approaches 
-and better error ans success feedbacks.
+Features like filtering by clients, creating new clients, and so on.
+The UX can be improved too, things like card color changing when the due date approaches 
+and better error and success feedback.
 
 
 
 ## Technologies used
-#### For developement
+#### For development
 - Backend
 
     Python 3.6, Flask, SqliteAlchemy, Sqlite
@@ -64,7 +64,7 @@ and better error ans success feedbacks.
     pip install -r Requirements.txt 
 ````
 
-##### 4 - Create a .env file on project root and add the following variables:
+##### 4 - Create a .env file on the project root and add the following variables:
 ````dotenv
 DEBUG=True
 
@@ -76,11 +76,11 @@ DB_NAME=ebdb
 AWS_ACCESS_KEY_ID=Your_key_id_or_leave_blank
 AWS_SECRET_ACCESS_KEY=your_access_key_or_leave_blak
 ````    
-The above variables are required, but with except DEBUG they all can be left blank        
+The above variables are required, but except DEBUG they all can be left blank        
 If you set DEBUG to false, you will have to set-up a MySQL database, or change the config.py file to use whatever database you like
 
 ##### 5 - set up the database
-For development SQLite was used. 
+For development, SQLite was used. 
 To create the database access the python interactive shell at the project root
 ````console
     python
@@ -102,20 +102,20 @@ To create the database access the python interactive shell at the project root
 
 ## To Deploy the application
 
-The application is deployed with AWS elastic beanstalk cli. 
-With a mysql database
+The application is deployed with AWS elastic Beanstalk CLI. 
+With a MySQL database
 
-To install fallow the instructions at:
+To install follow the instructions at:
 
 https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-install.html
 
-To configure fallow the instructions at:
+To configure follow the instructions at:
 
 https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-configuration.html
 
-You have to have the aws credentials to config the environment
+You have to have the AWS credentials to config the environment
 
-After configuration done, use 
+After the configuration done, use 
 
 ```console
     eb deploy
