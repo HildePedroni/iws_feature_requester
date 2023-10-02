@@ -9,10 +9,10 @@ function FeatureViewModel() {
     var api_base = 'api/feature';
 
     //Messages
-    var allFieldsMessage = 'All fields is required!';
-    var createFeatureMessage = 'Feature created with success!';
+    var allFieldsMessage = 'All fields are required!';
+    var createFeatureMessage = 'Feature created!';
     var somethingWrongMsg = 'Ooops! Something went wrong!';
-    var featureUpdatedMsg = 'Feature updated with success!';
+    var featureUpdatedMsg = 'Feature successfully updated!';
 
     self.id = ko.observable('');
     self.title = ko.observable('');
